@@ -187,3 +187,25 @@ You use middleware to ensure your app behaves correctly and securely for every u
 <li>Improve user experience (e.g., auto-redirect logged-in users away from the login page).</li>
 <li>Handle authentication in one place, instead of repeating code in every page.</li>
 <ul>
+
+
+# QUESTION:
+Where do I get jwtSecret and jwtExpiresIn Values?
+
+# ANSWER:
+1. jwtSecret: This is a secret key used to digitally sign the JWT. It ensures the token is tamper-proof and can only be verified by the server that issued it.
+You must define your own random, secure string as the jwtSecret. For security reasons, it’s best to store this key in an .env file (environment file) rather than hardcoding it into your code.
+<strong>How to Generate a Secure Secret Key:</strong>
+Using OpenSSL: You can generate a secure random string using the OpenSSL command-line tool. Run the following command in your terminal:
+```bash
+openssl rand -base64 32
+```
+This will output a random base64-encoded string that you can use as your jwtSecret. i.e D4OybH9mByRz94a+u6R7P+fqY/Nlt3pgov5Wz0HsOjY=
+
+2. jwtExpiresIn: This is the time duration for which the JWT is valid. After this time, the token will expire and the user will need to log in again. You can set this value based on your application’s requirements. Common values are in seconds, minutes, or hours.
+Common Expiration Times:
+'1h' = 1 hour (often used for short-term tokens).
+'24h' = 24 hours.
+'7d' = 7 days (longer validity, often for refresh tokens).
+
+# QUESTION:
